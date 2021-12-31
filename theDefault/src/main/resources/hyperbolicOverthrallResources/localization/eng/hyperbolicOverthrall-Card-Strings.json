@@ -1,0 +1,61 @@
+{
+  "hyperbolicOverthrall:SunWukongPreStrike": {
+    "NAME": "PreStrike",
+    "DESCRIPTION": "Startup: Deal !D! damage. NL Deal !D! * 1.5 damage. NL Discard a card and draw a card."
+  },
+  "hyperbolicOverthrall:SunWukongPreparedMaterials": {
+    "NAME": "Prepared Materials",
+    "DESCRIPTION": "Startup: Draw !M! cards. NL Unplayable. NL If this card is discarded from your hand gain [E]."
+  },
+  "hyperbolicOverthrall:DefaultCommonAttack": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
+  },
+  "hyperbolicOverthrall:DefaultCommonSkill": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block. NL thedefault:Multiword_Keyword."
+  },
+  "hyperbolicOverthrall:DefaultCommonPower": {
+    "NAME": "Hold Place",
+    "DESCRIPTION": "Gain !M! thedefault:Keyword.",
+    "UPGRADE_DESCRIPTION": "Gain !M! thedefault:Keywords."
+  },
+  "hyperbolicOverthrall:SunWukongStrike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "hyperbolicOverthrall:SunWukongDefend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "hyperbolicOverthrall:DefaultUncommonPower": {
+    "NAME": "Weirdness",
+    "DESCRIPTION": "Gain X thedefault:Keywords.",
+    "UPGRADE_DESCRIPTION": "Gain X +1 thedefault:Keywords."
+  },
+  "hyperbolicOverthrall:DefaultRareAttack": {
+    "NAME": "TOUCH",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "hyperbolicOverthrall:DefaultRareSkill": {
+    "NAME": "For Each Loop x2",
+    "DESCRIPTION": "Apply !M! Vulnerable to all enemies, 2 times.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to all enemies, 3 times."
+  },
+  "hyperbolicOverthrall:DefaultRarePower": {
+    "NAME": "In-Progress Form",
+    "DESCRIPTION": "At the start of your turn, play a TOUCH."
+  },
+  "hyperbolicOverthrall:DefaultAttackWithVariable": {
+    "NAME": "Special Strike",
+    "DESCRIPTION": "Deal !D! damage [E] times. NL (Deal !theDefault:ENERGY_DAMAGE! damage total.)"
+  },
+  "hyperbolicOverthrall:DefaultSecondMagicNumberSkill": {
+    "NAME": "Cool 2 Number Card",
+    "DESCRIPTION": "Apply !M! Vulnerable and !theDefault:SecondMagic! poison to an enemy."
+  },
+  "hyperbolicOverthrall:OrbSkill": {
+    "NAME": "Get Orb",
+    "DESCRIPTION": "Channel 1 Default Orb."
+  }
+}
