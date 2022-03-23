@@ -1,20 +1,10 @@
 [
   {
     "NAMES": [
-      "keyword",
-      "keywords"
+      "scavenge",
+      "scavenge",
+      "Scavenge"
     ],
-    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
-  },
-  {
-    "PROPER_NAME": "Multiword Keyword",
-    "NAMES": [
-      "Multiword Keyword",
-      "multiword_keyword",
-      "multiword_keywords",
-      "multikey",
-      "multikeyword"
-    ],
-    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+    "DESCRIPTION": "Scavenging for scrap puts it into your rightmost empty slot. If you have no empty slots, your leftmost scrap is attached to a card in your hand at random."
   }
 ]

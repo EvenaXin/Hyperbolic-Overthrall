@@ -13,6 +13,20 @@
       "At the start of each combat, gain #b1 #yStrength."
     ]
   },
+  "hyperbolicOverthrall:LoneWolfRelic": {
+    "NAME": "Lone Wolf",
+    "FLAVOR": "You feel stronger.",
+    "DESCRIPTIONS": [
+      "Players can buy cards, potions, and relics from you through the courier for a bit of profit."
+    ]
+  },
+  "hyperbolicOverthrall:PrismRingRelic": {
+    "NAME": "Prism Ring",
+    "FLAVOR": "You feel stronger.",
+    "DESCRIPTIONS": [
+      "Players can buy cards, potions, and relics from you through the courier for a bit of profit."
+    ]
+  },
   "hyperbolicOverthrall:DefaultClickableRelic": {
     "NAME": "Right-Clicky Relic",
     "FLAVOR": "The more you right-click it, the more orbs you've evoked in your lifetime.",

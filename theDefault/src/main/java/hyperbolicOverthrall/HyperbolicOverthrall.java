@@ -12,22 +12,22 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import hyperbolicOverthrall.characters.*;
+import hyperbolicOverthrall.relics.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import hyperbolicOverthrall.cards.*;
-import hyperbolicOverthrall.characters.SunWukong;
 import hyperbolicOverthrall.events.IdentityCrisisEvent;
 import hyperbolicOverthrall.potions.PlaceholderPotion;
-import hyperbolicOverthrall.relics.BottledPlaceholderRelic;
-import hyperbolicOverthrall.relics.DefaultClickableRelic;
-import hyperbolicOverthrall.relics.adventureModeRelic;
-import hyperbolicOverthrall.relics.PlaceholderRelic2;
 import hyperbolicOverthrall.util.IDCheckDontTouchPls;
 import hyperbolicOverthrall.util.TextureLoader;
 import hyperbolicOverthrall.variables.DefaultCustomVariable;
@@ -47,7 +47,8 @@ public class HyperbolicOverthrall implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         EditCharactersSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        PostBattleSubscriber{
     // Make sure to implement the subscribers *you* are using (read basemod wiki). Editing cards? EditCardsSubscriber.
     // Making relics? EditRelicsSubscriber. etc., etc., for a full list and how to make your own, visit the basemod wiki.
     public static final Logger logger = LogManager.getLogger(HyperbolicOverthrall.class.getName());
@@ -67,25 +68,55 @@ public class HyperbolicOverthrall implements
     
     // Colors (RGB)
     // Character Color
-    public static final Color WUKONG_GRAY = CardHelper.getColor(64.0f, 70.0f, 70.0f);
-    
+    public static final Color ALTRUIST_BLUE = CardHelper.getColor(46.0f, 46.0f, 80.0f);
+    public static final Color ANARCHIST_RED = CardHelper.getColor(64.0f, 32.0f, 32.0f);
+    public static final Color COGNIZANT_GREEN = CardHelper.getColor(32.0f, 70.0f, 32.0f);
+    public static final Color EXECUTIVE_GRAY = CardHelper.getColor(64.0f, 64.0f, 70.0f);
+
     // Potion Colors in RGB
     public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
     public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f); // Near White
     public static final Color PLACEHOLDER_POTION_SPOTS = CardHelper.getColor(100.0f, 25.0f, 10.0f); // Super Dark Red/Brown
 
     // Card backgrounds - The actual rectangular card.
-    private static final String ATTACK_WUKONG_GRAY = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
-    private static final String SKILL_WUKONG_GRAY = "hyperbolicOverthrallResources/images/512/bg_skill_WUKONG_gray.png";
-    private static final String POWER_WUKONG_GRAY = "hyperbolicOverthrallResources/images/512/bg_power_WUKONG_gray.png";
+    private static final String ATTACK_ALTRUIST_LIGHT_BLUE = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_ANARCHIST_DARK_CRIMSON = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_COGNIZANT_FIBRE_GREEN = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_EXECUTIVE_CONCRETE_GRAY = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_ALTRUIST_LIGHT_BLUE = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_ANARCHIST_DARK_CRIMSON = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_COGNIZANT_FIBRE_GREEN = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_EXECUTIVE_CONCRETE_GRAY = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String POWER_ALTRUIST_LIGHT_BLUE = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String POWER_ANARCHIST_DARK_CRIMSON = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String POWER_COGNIZANT_FIBRE_GREEN = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
+    private static final String POWER_EXECUTIVE_CONCRETE_GRAY = "hyperbolicOverthrallResources/images/512/bg_attack_WUKONG_gray.png";
     
-    private static final String ENERGY_ORB_WUKONG_GRAY = "hyperbolicOverthrallResources/images/512/card_WUKONG_gray_orb.png";
-    private static final String CARD_ENERGY_ORB = "hyperbolicOverthrallResources/images/512/card_small_orb.png";
+    private static final String ENERGY_ORB_ALTRUIST_LIGHT_BLUE = "hyperbolicOverthrallResources/images/512/card_WUKONG_gray_orb.png";
+    private static final String ENERGY_ORB_ANARCHIST_DARK_CRIMSON = "hyperbolicOverthrallResources/images/512/card_WUKONG_gray_orb.png";
+    private static final String ENERGY_ORB_COGNIZANT_FIBRE_GREEN = "hyperbolicOverthrallResources/images/512/card_WUKONG_gray_orb.png";
+    private static final String ENERGY_ORB_EXECUTIVE_CONCRETE_GRAY = "hyperbolicOverthrallResources/images/512/card_WUKONG_gray_orb.png";
+    private static final String ALTRUIST_CARD_ENERGY_ORB = "hyperbolicOverthrallResources/images/512/card_small_orb.png";
+    private static final String ANARCHIST_CARD_ENERGY_ORB = "hyperbolicOverthrallResources/images/512/card_small_orb.png";
+    private static final String COGNIZANT_CARD_ENERGY_ORB = "hyperbolicOverthrallResources/images/512/card_small_orb.png";
+    private static final String EXECUTIVE_CARD_ENERGY_ORB = "hyperbolicOverthrallResources/images/512/card_small_orb.png";
     
-    private static final String ATTACK_WUKONG_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
-    private static final String SKILL_WUKONG_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_skill_WUKONG_gray.png";
-    private static final String POWER_WUKONG_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_power_WUKONG_gray.png";
-    private static final String ENERGY_ORB_WUKONG_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/card_WUKONG_gray_orb.png";
+    private static final String ATTACK_ALTRUIST_LIGHT_BLUE_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_ANARCHIST_DARK_CRIMSON_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_COGNIZANT_FIBRE_GREEN_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ATTACK_EXECUTIVE_CONCRETE_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_ALTRUIST_LIGHT_BLUE_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_ANARCHIST_DARK_CRIMSON_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_COGNIZANT_FIBRE_GREEN_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String SKILL_EXECUTIVE_CONCRETE_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String POWER_ALTRUIST_LIGHT_BLUE_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String POWER_ANARCHIST_DARK_CRIMSON_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String POWER_COGNIZANT_FIBRE_GREEN_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String POWER_EXECUTIVE_CONCRETE_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ENERGY_ORB_ALTRUIST_LIGHT_BLUE_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ENERGY_ORB_ANARCHIST_DARK_CRIMSON_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ENERGY_ORB_COGNIZANT_FIBRE_GREEN_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
+    private static final String ENERGY_ORB_EXECUTIVE_CONCRETE_GRAY_PORTRAIT = "hyperbolicOverthrallResources/images/1024/bg_attack_WUKONG_gray.png";
     
     // Character assets
     private static final String MONKEY_KING_BUTTON = "hyperbolicOverthrallResources/images/charSelect/DefaultCharacterButton.png";
@@ -134,16 +165,32 @@ public class HyperbolicOverthrall implements
         setModID("hyperbolicOverthrall");
 
         logger.info("Done subscribing");
+
+        BaseMod.addColor(Altruist.Enums.COLOR_SKY_BLUE, ALTRUIST_BLUE, ALTRUIST_BLUE, ALTRUIST_BLUE,
+                ALTRUIST_BLUE, ALTRUIST_BLUE, ALTRUIST_BLUE, ALTRUIST_BLUE,
+                ATTACK_ALTRUIST_LIGHT_BLUE, SKILL_ALTRUIST_LIGHT_BLUE, POWER_ALTRUIST_LIGHT_BLUE, ENERGY_ORB_ALTRUIST_LIGHT_BLUE,
+                ATTACK_ALTRUIST_LIGHT_BLUE_PORTRAIT, SKILL_ALTRUIST_LIGHT_BLUE_PORTRAIT, POWER_ALTRUIST_LIGHT_BLUE_PORTRAIT,
+                ENERGY_ORB_ALTRUIST_LIGHT_BLUE_PORTRAIT, ALTRUIST_CARD_ENERGY_ORB);
+
+        BaseMod.addColor(Anarchist.Enums.COLOR_DARK_CRIMSON, ANARCHIST_RED, ANARCHIST_RED, ANARCHIST_RED,
+                ANARCHIST_RED, ANARCHIST_RED, ANARCHIST_RED, ANARCHIST_RED,
+                ATTACK_ANARCHIST_DARK_CRIMSON, SKILL_ANARCHIST_DARK_CRIMSON, POWER_ANARCHIST_DARK_CRIMSON, ENERGY_ORB_ANARCHIST_DARK_CRIMSON,
+                ATTACK_ANARCHIST_DARK_CRIMSON_PORTRAIT, SKILL_ANARCHIST_DARK_CRIMSON_PORTRAIT, POWER_ANARCHIST_DARK_CRIMSON_PORTRAIT,
+                ENERGY_ORB_ANARCHIST_DARK_CRIMSON_PORTRAIT, ANARCHIST_CARD_ENERGY_ORB);
+
+        BaseMod.addColor(Cognizant.Enums.COLOR_FIBRE_GREEN, COGNIZANT_GREEN, COGNIZANT_GREEN, COGNIZANT_GREEN,
+                COGNIZANT_GREEN, COGNIZANT_GREEN, COGNIZANT_GREEN, COGNIZANT_GREEN,
+                ATTACK_COGNIZANT_FIBRE_GREEN, SKILL_COGNIZANT_FIBRE_GREEN, POWER_COGNIZANT_FIBRE_GREEN, ENERGY_ORB_COGNIZANT_FIBRE_GREEN,
+                ATTACK_COGNIZANT_FIBRE_GREEN_PORTRAIT, SKILL_COGNIZANT_FIBRE_GREEN_PORTRAIT, POWER_COGNIZANT_FIBRE_GREEN_PORTRAIT,
+                ENERGY_ORB_COGNIZANT_FIBRE_GREEN_PORTRAIT, COGNIZANT_CARD_ENERGY_ORB);
+
+        BaseMod.addColor(Executive.Enums.COLOR_CONCRETE_GRAY, EXECUTIVE_GRAY, EXECUTIVE_GRAY, EXECUTIVE_GRAY,
+                EXECUTIVE_GRAY, EXECUTIVE_GRAY, EXECUTIVE_GRAY, EXECUTIVE_GRAY,
+                ATTACK_EXECUTIVE_CONCRETE_GRAY, SKILL_EXECUTIVE_CONCRETE_GRAY, POWER_EXECUTIVE_CONCRETE_GRAY, ENERGY_ORB_EXECUTIVE_CONCRETE_GRAY,
+                ATTACK_EXECUTIVE_CONCRETE_GRAY_PORTRAIT, SKILL_EXECUTIVE_CONCRETE_GRAY_PORTRAIT, POWER_EXECUTIVE_CONCRETE_GRAY_PORTRAIT,
+                ENERGY_ORB_EXECUTIVE_CONCRETE_GRAY_PORTRAIT, EXECUTIVE_CARD_ENERGY_ORB);
         
-        logger.info("Creating the color " + SunWukong.Enums.COLOR_YELLOW.toString());
-        
-        BaseMod.addColor(SunWukong.Enums.COLOR_YELLOW, WUKONG_GRAY, WUKONG_GRAY, WUKONG_GRAY,
-                WUKONG_GRAY, WUKONG_GRAY, WUKONG_GRAY, WUKONG_GRAY,
-                ATTACK_WUKONG_GRAY, SKILL_WUKONG_GRAY, POWER_WUKONG_GRAY, ENERGY_ORB_WUKONG_GRAY,
-                ATTACK_WUKONG_GRAY_PORTRAIT, SKILL_WUKONG_GRAY_PORTRAIT, POWER_WUKONG_GRAY_PORTRAIT,
-                ENERGY_ORB_WUKONG_GRAY_PORTRAIT, CARD_ENERGY_ORB);
-        
-        logger.info("Done creating the color");
+        logger.info("Done creating the colors!");
         
         
         logger.info("Adding mod settings");
@@ -219,13 +266,18 @@ public class HyperbolicOverthrall implements
     
     @Override
     public void receiveEditCharacters() {
-        logger.info("Beginning to edit characters. " + "Add " + SunWukong.Enums.MONKEY_KING.toString());
-        
-        BaseMod.addCharacter(new SunWukong("the Default", SunWukong.Enums.MONKEY_KING),
-                MONKEY_KING_BUTTON, MONKEY_KING_PORTRAIT, SunWukong.Enums.MONKEY_KING);
-        
-        receiveEditPotions();
-        logger.info("Added " + SunWukong.Enums.MONKEY_KING.toString());
+
+        BaseMod.addCharacter(new Altruist("The Altruist", Altruist.Enums.ALTRUIST),
+                MONKEY_KING_BUTTON, MONKEY_KING_PORTRAIT, Altruist.Enums.ALTRUIST);
+
+        BaseMod.addCharacter(new Anarchist("The Anarchist", Anarchist.Enums.ANARCHIST),
+                MONKEY_KING_BUTTON, MONKEY_KING_PORTRAIT, Anarchist.Enums.ANARCHIST);
+
+        BaseMod.addCharacter(new Cognizant("The Cognizant", Cognizant.Enums.COGNIZANT),
+                MONKEY_KING_BUTTON, MONKEY_KING_PORTRAIT, Cognizant.Enums.COGNIZANT);
+
+        BaseMod.addCharacter(new Executive("The Executive", Executive.Enums.EXECUTIVE),
+                MONKEY_KING_BUTTON, MONKEY_KING_PORTRAIT, Executive.Enums.EXECUTIVE);
     }
     
     // =============== /LOAD THE CHARACTER/ =================
@@ -283,7 +335,7 @@ public class HyperbolicOverthrall implements
         // Since this is a builder these method calls (outside of create()) can be skipped/added as necessary
         AddEventParams eventParams = new AddEventParams.Builder(IdentityCrisisEvent.ID, IdentityCrisisEvent.class) // for this specific event
             .dungeonID(TheCity.ID) // The dungeon (act) this event will appear in
-            .playerClass(SunWukong.Enums.MONKEY_KING) // Character specific event
+            .playerClass(Anarchist.Enums.ANARCHIST) // Character specific event
             .create();
 
         // Add the event
@@ -303,7 +355,7 @@ public class HyperbolicOverthrall implements
         // Class Specific Potion. If you want your potion to not be class-specific,
         // just remove the player class at the end (in this case the "TheDefaultEnum.MONKEY_KING".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
-        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, SunWukong.Enums.MONKEY_KING);
+        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, Anarchist.Enums.ANARCHIST);
         
         logger.info("Done editing potions");
     }
@@ -325,9 +377,11 @@ public class HyperbolicOverthrall implements
         // in order to automatically differentiate which pool to add the relic too.
 
         // This adds a character specific relic. Only when you play with the mentioned color, will you get this relic.
-        BaseMod.addRelicToCustomPool(new adventureModeRelic(), SunWukong.Enums.COLOR_YELLOW);
-        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), SunWukong.Enums.COLOR_YELLOW);
-        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), SunWukong.Enums.COLOR_YELLOW);
+        BaseMod.addRelicToCustomPool(new LoneWolfRelic(), Executive.Enums.COLOR_CONCRETE_GRAY);
+        BaseMod.addRelicToCustomPool(new PrismRingRelic(), Cognizant.Enums.COLOR_FIBRE_GREEN);
+        BaseMod.addRelicToCustomPool(new adventureModeRelic(), Altruist.Enums.COLOR_SKY_BLUE);
+        BaseMod.addRelicToCustomPool(new BottledPlaceholderRelic(), Altruist.Enums.COLOR_SKY_BLUE);
+        BaseMod.addRelicToCustomPool(new DefaultClickableRelic(), Altruist.Enums.COLOR_SKY_BLUE);
         
         // This adds a relic to the Shared pool. Every character can find this relic.
         BaseMod.addRelic(new PlaceholderRelic2(), RelicType.SHARED);
@@ -454,5 +508,14 @@ public class HyperbolicOverthrall implements
     // in order to avoid conflicts if any other mod uses the same ID.
     public static String makeID(String idText) {
         return getModID() + ":" + idText;
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        for(AbstractCard card : AbstractDungeon.player.masterDeck.group) {
+            if(card instanceof PostBattleCard) {
+                ((PostBattleCard) card).postBattleEffect();
+            }
+        }
     }
 }

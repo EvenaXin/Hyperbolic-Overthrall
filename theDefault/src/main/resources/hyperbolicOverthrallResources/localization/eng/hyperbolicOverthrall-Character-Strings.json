@@ -1,13 +1,46 @@
 {
-  "hyperbolicOverthrall:SunWukong": {
+  "hyperbolicOverthrall:Altruist": {
     "NAMES": [
-      "Mei Hou Wang",
-      "Mei Hou Wang"
+      "The Altruist",
+      "Altruist"
     ],
     "TEXT": [
-      "Mei Hou Wang exists and is valid. NL Second placeholder line of description text.",
-      "NL You TOUCH the heart.",
-      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~basic~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+      "The Altruist's philosophy is about giving to others even during hard times.",
+      "NL You WARM the heart.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~kind~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+  "hyperbolicOverthrall:Anarchist": {
+    "NAMES": [
+      "The Anarchist",
+      "Anarchist"
+    ],
+    "TEXT": [
+      "The Anarchist wishes to not follow anyone's laws but her own. She will do anything she can to escape but understands that she can't make it out without help.",
+      "NL You STAB the heart.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~fierce~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+  "hyperbolicOverthrall:Cognizant": {
+    "NAMES": [
+      "The Cognizant",
+      "Cognizant"
+    ],
+    "TEXT": [
+      "The Cognizant, after long travels finds themself within the spire with a newfound understanding of themself and a long journey ahead of them made better only by the company they hold.",
+      "NL You CONSUME the heart.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~strange~ ~ones,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+  "hyperbolicOverthrall:Executive": {
+    "NAMES": [
+      "The Executive",
+      "Executive"
+    ],
+    "TEXT": [
+      "The Executive entered the spire with one goal and one goal alone, make money. They understand they need to Defeat this tower, but it won't stop them from making a bit more cash along the way.",
+      "NL You DISREGARD the heart.",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~wealthy~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
     ]
   }
 }

@@ -1,61 +1,79 @@
 {
-  "hyperbolicOverthrall:SunWukongPreStrike": {
-    "NAME": "PreStrike",
-    "DESCRIPTION": "Startup: Deal !D! damage. NL Deal !D! * 1.5 damage. NL Discard a card and draw a card."
-  },
-  "hyperbolicOverthrall:SunWukongPreparedMaterials": {
-    "NAME": "Prepared Materials",
-    "DESCRIPTION": "Startup: Draw !M! cards. NL Unplayable. NL If this card is discarded from your hand gain [E]."
-  },
-  "hyperbolicOverthrall:DefaultCommonAttack": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
-  },
-  "hyperbolicOverthrall:DefaultCommonSkill": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL thedefault:Multiword_Keyword."
-  },
-  "hyperbolicOverthrall:DefaultCommonPower": {
-    "NAME": "Hold Place",
-    "DESCRIPTION": "Gain !M! thedefault:Keyword.",
-    "UPGRADE_DESCRIPTION": "Gain !M! thedefault:Keywords."
-  },
-  "hyperbolicOverthrall:SunWukongStrike": {
+  "hyperbolicOverthrall:altruistStrike": {
     "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
   },
-  "hyperbolicOverthrall:SunWukongDefend": {
+  "hyperbolicOverthrall:altruistDefend": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block."
   },
-  "hyperbolicOverthrall:DefaultUncommonPower": {
-    "NAME": "Weirdness",
-    "DESCRIPTION": "Gain X thedefault:Keywords.",
-    "UPGRADE_DESCRIPTION": "Gain X +1 thedefault:Keywords."
-  },
-  "hyperbolicOverthrall:DefaultRareAttack": {
-    "NAME": "TOUCH",
+  "hyperbolicOverthrall:anarchistStrike": {
+    "NAME": "Strike",
     "DESCRIPTION": "Deal !D! damage."
   },
-  "hyperbolicOverthrall:DefaultRareSkill": {
-    "NAME": "For Each Loop x2",
-    "DESCRIPTION": "Apply !M! Vulnerable to all enemies, 2 times.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to all enemies, 3 times."
+  "hyperbolicOverthrall:anarchistDefend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
   },
-  "hyperbolicOverthrall:DefaultRarePower": {
-    "NAME": "In-Progress Form",
-    "DESCRIPTION": "At the start of your turn, play a TOUCH."
+  "hyperbolicOverthrall:anarchistDart": {
+    "NAME": "Scrounge",
+    "DESCRIPTION": "Scavange for a Dart."
   },
-  "hyperbolicOverthrall:DefaultAttackWithVariable": {
-    "NAME": "Special Strike",
-    "DESCRIPTION": "Deal !D! damage [E] times. NL (Deal !theDefault:ENERGY_DAMAGE! damage total.)"
+  "hyperbolicOverthrall:cognizantStrike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
   },
-  "hyperbolicOverthrall:DefaultSecondMagicNumberSkill": {
-    "NAME": "Cool 2 Number Card",
-    "DESCRIPTION": "Apply !M! Vulnerable and !theDefault:SecondMagic! poison to an enemy."
+  "hyperbolicOverthrall:cognizantDefend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
   },
-  "hyperbolicOverthrall:OrbSkill": {
-    "NAME": "Get Orb",
-    "DESCRIPTION": "Channel 1 Default Orb."
+  "hyperbolicOverthrall:executiveBankruptForm": {
+    "NAME": "Bankrupt Form",
+    "DESCRIPTION": "Lose all your gold. NL Whenever you would lose gold gain that much gold instead up to !M!."
+  },
+  "hyperbolicOverthrall:executiveBatonStrike": {
+    "NAME": "Baton Strike",
+    "DESCRIPTION": "Deal !D! damage. When sent to another player gains !M! damage."
+  },
+  "hyperbolicOverthrall:executiveCoinPelt": {
+    "NAME": "Coin Pelt",
+    "DESCRIPTION": "Deal !D! damage and lose 10 minus !M!, (minimum of 2), Gold. Repeat for every 100 gold you have."
+  },
+  "hyperbolicOverthrall:executiveDeadlyMerchandise": {
+    "NAME": "Deadly Merchandise",
+    "DESCRIPTION": "Deal !D! damage. NL Deals double damage if it's been sent through the Courier."
+  },
+  "hyperbolicOverthrall:executiveDefend": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "hyperbolicOverthrall:executiveEnforceKeep": {
+    "NAME": "Enforced Keep",
+    "DESCRIPTION": "Gain !B! Block. If you have not played this card this combat gain !M! Gold."
+  },
+  "hyperbolicOverthrall:executiveFinancialForefront": {
+    "NAME": "Financial Forefront",
+    "DESCRIPTION": "Deal !D! damage. If you are on the highest floor of all players gain that much gold."
+  },
+  "hyperbolicOverthrall:executiveMakeItRain": {
+    "NAME": "Make It Rain",
+    "DESCRIPTION": "Gain !M! Gold X times."
+  },
+  "hyperbolicOverthrall:executiveMisplacedCoinpurse": {
+    "NAME": "Misplaced Coinpurse",
+    "DESCRIPTION": "At the end of combat, gain !M! Gold."
+  },
+  "hyperbolicOverthrall:executiveSafetyNet": {
+    "NAME": "Safety Net",
+    "DESCRIPTION": "Gain !B! Block. NL Gains double block if it's been sent through the Courier."
+  },
+  "hyperbolicOverthrall:executiveStrike": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "hyperbolicOverthrall:executiveTightInvestment": {
+    "NAME": "Tight Investment",
+    "DESCRIPTION": "Pay 20 gold. NL When removed from your deck gain your gold back with interest.",
+    "EXTENDED_DESCRIPTION[0]": "You don't have enough gold."
   }
 }
